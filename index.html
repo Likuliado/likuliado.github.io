@@ -438,11 +438,11 @@ function updateCart() {
         cartItems.appendChild(item);
     });
 
-    totalDamage.textContent = `약 ${((totalBuff - 1) * 100).toFixed(2)}%(배)`;
-    totalSpeed.textContent = `${totalCool.toFixed(2)}배`;
-    totalCd.textContent = `${totalCdVal}초`;
-    totalMcl.textContent = `${totalMclVal.toFixed(2)}배`;
-    totalHac.textContent = `${totalHacVal.toFixed(2)}배`;
+    totalDamage.textContent = `Aprox. ${((totalBuff - 1) * 100).toFixed(2)}%(x)`;
+    totalSpeed.textContent = `x ${totalCool.toFixed(2)}`;
+    totalCd.textContent = `${totalCdVal} s`;
+    totalMcl.textContent = `x ${totalMclVal.toFixed(2)}`;
+    totalHac.textContent = `x ${totalHacVal.toFixed(2)}`;
     totalDefenseReduction.textContent = `${((1 - totalDefenseMultiplier) * 100).toFixed(2)}%`;
 }
 
