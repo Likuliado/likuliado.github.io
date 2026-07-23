@@ -77,9 +77,9 @@ header { background:linear-gradient(135deg,#6a8cff,#b08aff); padding:25px; text-
 .character { background:white; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; padding:10px; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s, border 0.3s; position:relative;}
 .character img { width:80px; height:80px; border-radius:10px; object-fit:cover; display:block; margin:0 auto;}
 .character p { margin:8px 0 0; font-size:14px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.character[data-type="물공"] p { color:#e74c3c; }
-.character[data-type="마공"] p { color:#3498db; }
-.character[data-type="녹"] p { color:#2ecc71; }
+.character[data-type="Ataque físico"] p { color:#e74c3c; }
+.character[data-type="Ataque mágico"] p { color:#3498db; }
+.character[data-type="Soporte"] p { color:#2ecc71; }
 .character.selected { box-shadow:0 0 25px 5px gold, 0 0 10px 2px orange inset; transform:scale(1.08); border:2px solid #f39c12;}
 .character:hover { transform:scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.15);}
 .cart { position:fixed; bottom:0; left:0; width:100%; background:white; border-top:2px solid #eee; padding:20px; text-align:center; box-shadow:0 -4px 12px rgba(0,0,0,0.08); z-index:1000; display:flex; flex-direction:column; align-items:center;}
@@ -118,9 +118,9 @@ header { background:linear-gradient(135deg,#6a8cff,#b08aff); padding:25px; text-
 
 <div class="category-container">
     <div class="category-btn active" data-filter="all">Todos</div>
-    <div class="category-btn" data-filter="물공">Ataque Físico</div>
-    <div class="category-btn" data-filter="마공">Ataque Mágico</div>
-    <div class="category-btn" data-filter="녹">Soporte</div>
+    <div class="category-btn" data-filter="Ataque físico">Ataque Físico</div>
+    <div class="category-btn" data-filter="Ataque mágico">Ataque Mágico</div>
+    <div class="category-btn" data-filter="Soporte">Soporte</div>
 </div>
 
 <div class="main-container">
@@ -172,66 +172,66 @@ function parseBuff(buffStr, useLowest = false) {
 }
 
 const charactersData = [
-    {id:1, name:"Knight Emperor", type:"물공", img:"이미지/나엠.png", buffs:["30.18%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 50},
-    {id:2, name:"Rune Master", type:"마공", img:"이미지/룬마.png", buffs:["33.99%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
-    {id:3, name:"Immortal", type:"물공", img:"이미지/탈모.png", buffs:["22%"], cool:1.3, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:4, name:"Genesis", type:"마공", img:"이미지/제네.png", buffs:["22.87%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:5, name:"Aether Sage", type:"마공", img:"이미지/에세.png", buffs:["25%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:6, name:"Oz Sorcerer", type:"마공", img:"이미지/오즈.png", buffs:["25.51%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
-    {id:7, name:"Metamorphy", type:"물공", img:"이미지/메타.png", buffs:["33.42%"], cool:0, cd:0.7, allowBuffMode:false, defenseReduction: 36},
-    {id:8, name:"Lord Azoth", type:"물공", img:"이미지/로아.png", buffs:["39.67%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
-    {id:9, name:"Anemos", type:"물공", img:"이미지/아네.png", buffs:["29.4%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 26},
-    {id:10, name:"Daybreaker", type:"마공", img:"이미지/데브.png", buffs:["25.75%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:11, name:"Twilight", type:"물공", img:"이미지/트와.png", buffs:["25.51%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
-    {id:12, name:"Prophetess", type:"마공", img:"이미지/프피.png", buffs:["45.67~50.37%"], cool:1.2, cd:0, allowBuffMode:true, defenseReduction: { '보뎀X': 20, '보뎀O': 20 }},
-    {id:13, name:"Furious Blade", type:"물공", img:"이미지/퓨블.png", buffs:["26.48%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 32.5},
-    {id:14, name:"Rage Hearts", type:"마공", img:"이미지/레하.png", buffs:["25.98%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 25},
-    {id:15, name:"Nova Imperator", type:"마공", img:"이미지/노바.png", buffs:["30.92%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 15},
-    {id:16, name:"Revenant", type:"물공", img:"이미지/레버.png", buffs:["49~52%"], cool:0, cd:3, allowBuffMode:true, defenseReduction: { '저점': 20, '고점': 20 }},
-    {id:17, name:"Code: Ultimate", type:"마공", img:"이미지/얼티.png", buffs:["25.51~27.33%"], cool:1.3, cd:0, allowBuffMode:true, defenseReduction: { '저점': 30, '고점': 30 }},
-    {id:18, name:"Code: Esencia", type:"물공", img:"이미지/에센.png", buffs:["40.58%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
-    {id:19, name:"Code: Sariel", type:"마공", img:"이미지/사리엘.png", buffs:["29.95%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
-    {id:20, name:"Code: Antithese", type:"물공", img:"이미지/안티.png", buffs:["30.49%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
-    {id:21, name:"Comet Crusader", type:"물공", img:"이미지/코크.png", buffs:["20.02% / 23.07%"], cool:1.3, cd:0, allowBuffMode:true, defenseReduction: { '저점': 10, '고점': 23.5 }},
-    {id:22, name:"Fatal Phantom", type:"마공", img:"이미지/페팬.png", buffs:["24%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:23, name:"Centurion", type:"마공", img:"이미지/센츄.png", buffs:["23.83%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 40},
-    {id:24, name:"Dius Aer", type:"녹", img:"이미지/디아.png", buffs:["39.24%"], cool:1.2, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:25, name:"Apsara", type:"물공", img:"이미지/비천.png", buffs:["33.27% / 47.12%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 5, '고점': 38.25 }},
-    {id:26, name:"Surya", type:"마공", img:"이미지/범황.png", buffs:["18.63% / 29.34%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 20, '고점': 48 }},
-    {id:27, name:"Devi", type:"물공", img:"이미지/대라.png", buffs:["26.29% / 38.27%"], cool:1.5, cd:0, allowBuffMode:true, defenseReduction: { '저점': 15, '고점': 44.75 }},
-    {id:28, name:"Shakti", type:"녹", img:"이미지/일천.png", buffs:["34.4% / 48.95%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 0, '고점': 35 }},
-    {id:29, name:"Empire Sword 소드", type:"물공", img:"이미지/엠소.png", buffs:["35.55%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 46.8},
-    {id:30, name:"Flame Lord", type:"마공", img:"이미지/플로.png", buffs:["28.79%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
-    {id:31, name:"Bloody Queen", type:"물공", img:"이미지/블퀸.png", buffs:["23.86~26.35%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 0, '고점': 0 }},
-    {id:32, name:"Adrestia", type:"마공", img:"이미지/아드.png", buffs:["29.12~32.43%"], cool:1.1, cd:0, allowBuffMode:true, defenseReduction: { '저점': 20, '고점': 20 }},
-    {id:33, name:"Doom Bringer", type:"마공", img:"이미지/둠브.png", buffs:["21%"], cool:0, cd:4, allowBuffMode:false, defenseReduction: 0},
-    {id:34, name:"Dominator", type:"물공", img:"이미지/도미.png", buffs:["41.7%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 21.5},
-    {id:35, name:"Mad Paradox", type:"마공", img:"이미지/매패.png", buffs:["21.5%"], cool:0, cd:12, allowBuffMode:false, defenseReduction: 28},
-    {id:36, name:"Overmind", type:"녹", img:"이미지/오마.png", buffs:["36.07% / 46.96%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '트롤리': 20, '메스': 20 }},
-    {id:37, name:"Catastrophe", type:"물공", img:"이미지/카타.png", buffs:["28.17%"], cool:1.3, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:38, name:"Innocent", type:"마공", img:"이미지/이노.png", buffs:["34.32%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 31},
-    {id:39, name:"Diangelion", type:"물공", img:"이미지/디앙.png", buffs:["24.82% / 37.49%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 20, '고점': 46.4 }},
-    {id:40, name:"Demersio", type:"녹", img:"이미지/데메.png", buffs:["36.88%"], cool:1.25, cd:0, allowBuffMode:false, defenseReduction: 20},
-    {id:41, name:"Tempest Burster", type:"물공", img:"이미지/템버.png", buffs:["39.75%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 26},
-    {id:42, name:"Black Massacre", type:"물공", img:"이미지/블매.png", buffs:["21.8%"], cool:0, cd:0, allowBuffMode:false, defenseReduction:30},
-    {id:43, name:"Minerva", type:"마공", img:"이미지/미네.png", buffs:["25.51%"], cool:0, cd:4, allowBuffMode:false, defenseReduction: 30},
-    {id:44, name:"Prime Operator", type:"마공", img:"이미지/프오.png", buffs:["34.46%"], cool:1.3, cd:0, allowBuffMode:false, defenseReduction: 30},
-    {id:45, name:"Richter", type:"물공", img:"이미지/리히.png", buffs:["22%"], cool:1.2, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:46, name:"Bluhen", type:"녹", img:"이미지/블헨.png", buffs:["40.36%"], cool:1.2, cd:0, allowBuffMode:false, defenseReduction: 20},
-    {id:47, name:"Herrscher", type:"마공", img:"이미지/헬셔.png", buffs:["27.07%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 35},
-    {id:48, name:"Opferung", type:"물공", img:"이미지/비곹.png", buffs:["38.24%"], cool:0, cd:0, cool_mcl:1.2, cool_hac:1.2, allowBuffMode:true, defenseReduction: { '노첸': 20, '첸': 20 }},
-    {id:49, name:"Eternity Winner", type:"물공", img:"이미지/이위.png", buffs:["21.81%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
-    {id:50, name:"Radiant Soul", type:"녹", img:"이미지/라소.png", buffs:["38.82%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
-    {id:51, name:"Nisha Labyrinth", type:"물공", img:"이미지/니샤.png", buffs:["30.97%"], cool:1.3, cd:0, allowBuffMode:false, defenseReduction: 30},
-    {id:52, name:"Twins Picaro", type:"마공", img:"이미지/트피.png", buffs:["20%"], cool:0, cd:0,cool_hac:2, cool_mcl:1.0, allowBuffMode:false, defenseReduction: 0},
-    {id:53, name:"Liberator", type:"물공", img:"이미지/리버.png", buffs:["24.56%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 10},
-    {id:54, name:"Celestia", type:"마공", img:"이미지/셀레.png", buffs:["40.82~57.71%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '기본': 18, '미지': 18 }},
-    {id:55, name:"Nyx Pieta", type:"녹", img:"이미지/닉스.png", buffs:["40.7%"], cool:0, cd:0,cool_hac:2, cool_mcl:2, allowBuffMode:false, defenseReduction: 20},
-    {id:56, name:"Morpheus", type:"마공", img:"이미지/몰페.png", buffs:["25%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
-    {id:57, name:"Gembliss", type:"물공", img:"이미지/젬블.png", buffs:["22%"], cool:0, cd:4, allowBuffMode:false, defenseReduction: 0},
-    {id:58, name:"Avarice", type:"녹", img:"이미지/애버.png", buffs:["30.49% / 50.41%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '비서약': 20, '서약': 20 }},
-    {id:59, name:"Achlys", type:"마공", img:"이미지/아클.png", buffs:["41.83%"], cool:0, cd:2, allowBuffMode:false, defenseReduction: 30},
-    {id:60, name:"Mischief", type:"마공", img:"이미지/미치.png", buffs:["26.14%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20}
+    {id:1, name:"Knight Emperor", type:"Ataque físico", img:"이미지/나엠.png", buffs:["30.18%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 50},
+    {id:2, name:"Rune Master", type:"Ataque mágico", img:"이미지/룬마.png", buffs:["33.99%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
+    {id:3, name:"Immortal", type:"Ataque físico", img:"이미지/탈모.png", buffs:["22%"], cool:1.3, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:4, name:"Genesis", type:"Ataque mágico", img:"이미지/제네.png", buffs:["22.87%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:5, name:"Aether Sage", type:"Ataque mágico", img:"이미지/에세.png", buffs:["25%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:6, name:"Oz Sorcerer", type:"Ataque mágico", img:"이미지/오즈.png", buffs:["25.51%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
+    {id:7, name:"Metamorphy", type:"Ataque físico", img:"이미지/메타.png", buffs:["33.42%"], cool:0, cd:0.7, allowBuffMode:false, defenseReduction: 36},
+    {id:8, name:"Lord Azoth", type:"Ataque físico", img:"이미지/로아.png", buffs:["39.67%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
+    {id:9, name:"Anemos", type:"Ataque físico", img:"이미지/아네.png", buffs:["29.4%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 26},
+    {id:10, name:"Daybreaker", type:"Ataque mágico", img:"이미지/데브.png", buffs:["25.75%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:11, name:"Twilight", type:"Ataque físico", img:"이미지/트와.png", buffs:["25.51%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
+    {id:12, name:"Prophetess", type:"Ataque mágico", img:"이미지/프피.png", buffs:["45.67~50.37%"], cool:1.2, cd:0, allowBuffMode:true, defenseReduction: { '보뎀X': 20, '보뎀O': 20 }},
+    {id:13, name:"Furious Blade", type:"Ataque físico", img:"이미지/퓨블.png", buffs:["26.48%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 32.5},
+    {id:14, name:"Rage Hearts", type:"Ataque mágico", img:"이미지/레하.png", buffs:["25.98%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 25},
+    {id:15, name:"Nova Imperator", type:"Ataque mágico", img:"이미지/노바.png", buffs:["30.92%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 15},
+    {id:16, name:"Revenant", type:"Ataque físico", img:"이미지/레버.png", buffs:["49~52%"], cool:0, cd:3, allowBuffMode:true, defenseReduction: { '저점': 20, '고점': 20 }},
+    {id:17, name:"Code: Ultimate", type:"Ataque mágico", img:"이미지/얼티.png", buffs:["25.51~27.33%"], cool:1.3, cd:0, allowBuffMode:true, defenseReduction: { '저점': 30, '고점': 30 }},
+    {id:18, name:"Code: Esencia", type:"Ataque físico", img:"이미지/에센.png", buffs:["40.58%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
+    {id:19, name:"Code: Sariel", type:"Ataque mágico", img:"이미지/사리엘.png", buffs:["29.95%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
+    {id:20, name:"Code: Antithese", type:"Ataque físico", img:"이미지/안티.png", buffs:["30.49%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
+    {id:21, name:"Comet Crusader", type:"Ataque físico", img:"이미지/코크.png", buffs:["20.02% / 23.07%"], cool:1.3, cd:0, allowBuffMode:true, defenseReduction: { '저점': 10, '고점': 23.5 }},
+    {id:22, name:"Fatal Phantom", type:"Ataque mágico", img:"이미지/페팬.png", buffs:["24%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:23, name:"Centurion", type:"Ataque mágico", img:"이미지/센츄.png", buffs:["23.83%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 40},
+    {id:24, name:"Dius Aer", type:"Soporte", img:"이미지/디아.png", buffs:["39.24%"], cool:1.2, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:25, name:"Apsara", type:"Ataque físico", img:"이미지/비천.png", buffs:["33.27% / 47.12%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 5, '고점': 38.25 }},
+    {id:26, name:"Surya", type:"Ataque mágico", img:"이미지/일천.png", buffs:["18.63% / 29.34%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 20, '고점': 48 }},
+    {id:27, name:"Devi", type:"Ataque físico", img:"이미지/범황.png", buffs:["26.29% / 38.27%"], cool:1.5, cd:0, allowBuffMode:true, defenseReduction: { '저점': 15, '고점': 44.75 }},
+    {id:28, name:"Shakti", type:"Soporte", img:"이미지/대라.png", buffs:["34.4% / 48.95%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 0, '고점': 35 }},
+    {id:29, name:"Empire Sword 소드", type:"Ataque físico", img:"이미지/엠소.png", buffs:["35.55%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 46.8},
+    {id:30, name:"Flame Lord", type:"Ataque mágico", img:"이미지/플로.png", buffs:["28.79%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
+    {id:31, name:"Bloody Queen", type:"Ataque físico", img:"이미지/블퀸.png", buffs:["23.86~26.35%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 0, '고점': 0 }},
+    {id:32, name:"Adrestia", type:"Ataque mágico", img:"이미지/아드.png", buffs:["29.12~32.43%"], cool:1.1, cd:0, allowBuffMode:true, defenseReduction: { '저점': 20, '고점': 20 }},
+    {id:33, name:"Doom Bringer", type:"Ataque mágico", img:"이미지/둠브.png", buffs:["21%"], cool:0, cd:4, allowBuffMode:false, defenseReduction: 0},
+    {id:34, name:"Dominator", type:"Ataque físico", img:"이미지/도미.png", buffs:["41.7%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 21.5},
+    {id:35, name:"Mad Paradox", type:"Ataque mágico", img:"이미지/매패.png", buffs:["21.5%"], cool:0, cd:12, allowBuffMode:false, defenseReduction: 28},
+    {id:36, name:"Overmind", type:"Soporte", img:"이미지/오마.png", buffs:["36.07% / 46.96%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '트롤리': 20, '메스': 20 }},
+    {id:37, name:"Catastrophe", type:"Ataque físico", img:"이미지/카타.png", buffs:["28.17%"], cool:1.3, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:38, name:"Innocent", type:"Ataque mágico", img:"이미지/이노.png", buffs:["34.32%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 31},
+    {id:39, name:"Diangelion", type:"Ataque físico", img:"이미지/디앙.png", buffs:["24.82% / 37.49%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '저점': 20, '고점': 46.4 }},
+    {id:40, name:"Demersio", type:"Soporte", img:"이미지/데메.png", buffs:["36.88%"], cool:1.25, cd:0, allowBuffMode:false, defenseReduction: 20},
+    {id:41, name:"Tempest Burster", type:"Ataque físico", img:"이미지/템버.png", buffs:["39.75%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 26},
+    {id:42, name:"Black Massacre", type:"Ataque físico", img:"이미지/블매.png", buffs:["21.8%"], cool:0, cd:0, allowBuffMode:false, defenseReduction:30},
+    {id:43, name:"Minerva", type:"Ataque mágico", img:"이미지/미네.png", buffs:["25.51%"], cool:0, cd:4, allowBuffMode:false, defenseReduction: 30},
+    {id:44, name:"Prime Operator", type:"Ataque mágico", img:"이미지/프오.png", buffs:["34.46%"], cool:1.3, cd:0, allowBuffMode:false, defenseReduction: 30},
+    {id:45, name:"Richter", type:"Ataque físico", img:"이미지/리히.png", buffs:["22%"], cool:1.2, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:46, name:"Bluhen", type:"Soporte", img:"이미지/블헨.png", buffs:["40.36%"], cool:1.2, cd:0, allowBuffMode:false, defenseReduction: 20},
+    {id:47, name:"Herrscher", type:"Ataque mágico", img:"이미지/헬셔.png", buffs:["27.07%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 35},
+    {id:48, name:"Opferung", type:"Ataque físico", img:"이미지/비곹.png", buffs:["38.24%"], cool:0, cd:0, cool_mcl:1.2, cool_hac:1.2, allowBuffMode:true, defenseReduction: { '노첸': 20, '첸': 20 }},
+    {id:49, name:"Eternity Winner", type:"Ataque físico", img:"이미지/이위.png", buffs:["21.81%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20},
+    {id:50, name:"Radiant Soul", type:"Soporte", img:"이미지/라소.png", buffs:["38.82%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 30},
+    {id:51, name:"Nisha Labyrinth", type:"Ataque físico", img:"이미지/니샤.png", buffs:["30.97%"], cool:1.3, cd:0, allowBuffMode:false, defenseReduction: 30},
+    {id:52, name:"Twins Picaro", type:"Ataque mágico", img:"이미지/트피.png", buffs:["20%"], cool:0, cd:0,cool_hac:2, cool_mcl:1.0, allowBuffMode:false, defenseReduction: 0},
+    {id:53, name:"Liberator", type:"Ataque físico", img:"이미지/리버.png", buffs:["24.56%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 10},
+    {id:54, name:"Celestia", type:"Ataque mágico", img:"이미지/셀레.png", buffs:["40.82~57.71%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '기본': 18, '미지': 18 }},
+    {id:55, name:"Nyx Pieta", type:"Soporte", img:"이미지/닉스.png", buffs:["40.7%"], cool:0, cd:0,cool_hac:2, cool_mcl:2, allowBuffMode:false, defenseReduction: 20},
+    {id:56, name:"Morpheus", type:"Ataque mágico", img:"이미지/몰페.png", buffs:["25%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 0},
+    {id:57, name:"Gembliss", type:"Ataque físico", img:"이미지/젬블.png", buffs:["22%"], cool:0, cd:4, allowBuffMode:false, defenseReduction: 0},
+    {id:58, name:"Avarice", type:"Soporte", img:"이미지/애버.png", buffs:["30.49% / 50.41%"], cool:0, cd:0, allowBuffMode:true, defenseReduction: { '비서약': 20, '서약': 20 }},
+    {id:59, name:"Achlys", type:"Ataque mágico", img:"이미지/아클.png", buffs:["41.83%"], cool:0, cd:2, allowBuffMode:false, defenseReduction: 30},
+    {id:60, name:"Mischief", type:"Ataque mágico", img:"이미지/미치.png", buffs:["26.14%"], cool:0, cd:0, allowBuffMode:false, defenseReduction: 20}
 ];
 
 function updateBuffButton(container, char) {
@@ -448,7 +448,7 @@ function updateCart() {
 
 function checkMixWarning() {
     const types = selected.map(id => charactersData.find(c => c.id === id).type);
-    if (types.includes('물공') && types.includes('마공')) mixWarning.style.display = 'inline-block';
+    if (types.includes('Ataque físico') && types.includes('Ataque mágico')) mixWarning.style.display = 'inline-block';
     else mixWarning.style.display = 'none';
 }
 
